@@ -32,8 +32,18 @@ API для управления каталогом организаций, зд�
 - Make (опционально)
 
 ### Запуск
+```bash
+# Клонировать репозиторий
+git clone git@github.com:knriia/geo_catalog_api.git
+cd geo_catalog_api
 
-#### С Make (рекомендуется)
+# Скопировать переменные окружения
+cp .env.example .env
+```
+
+#### Если установлен Make можно воспользоваться командами (рекомендуется), если нет ниже приведены обычные команды
+
+#### С Make
 ```bash
 # Собрать образы
 make build
@@ -98,5 +108,26 @@ docker compose run --rm migrator
 - Нажать кнопку Authorize
 - Ввести API-ключ из .env (переменная STATIC_API_KEY)
 - Нажать Authorize
+
+## 📖 Основные эндпоинты
+
+| Ресурс | Эндпоинт | Описание |
+|--------|----------|----------|
+| **Деятельности** | `POST /activities/` | Создание деятельности |
+| | `GET /activities/` | Список деятельностей (пагинация) |
+| | `GET /activities/tree/{id}` | Ветка дерева деятельности |
+| **Здания** | `POST /buildings/` | Создание здания |
+| | `GET /buildings/` | Список зданий (пагинация) |
+| | `GET /buildings/{id}` | Здание по ID |
+| | `GET /buildings/search/radius` | Поиск зданий в радиусе |
+| | `GET /buildings/search/bounds` | Поиск зданий в прямоугольнике |
+| **Организации** | `POST /organizations/` | Создание организации |
+| | `GET /organizations/` | Список организаций (пагинация) |
+| | `GET /organizations/{id}` | Организация по ID |
+| | `GET /organizations/search/name` | Поиск по названию |
+| | `GET /organizations/search/activity/{id}` | Поиск по виду деятельности |
+| | `GET /organizations/search/radius` | Поиск в радиусе |
+| | `GET /organizations/search/bounds` | Поиск в прямоугольнике |
+| | `GET /organizations/building/{id}` | Организации в здании |
 
 # В корне проекта лежит файл со структурой всего проекта "structure.md"
